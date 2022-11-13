@@ -31,66 +31,64 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Register'),
+      appBar: AppBar(
+        title: const Text('Register'),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextField(
+              controller: _email,
+              autocorrect: false,
+              enableSuggestions: true,
+              textAlign: TextAlign.left,
+              decoration: const InputDecoration(
+                hintText: "Enter your email here",
+                contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              ),
+            ),
+            TextField(
+              controller: _password,
+              textAlign: TextAlign.left,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                hintText: "Enter your password here",
+                contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              child: ElevatedButton(
+                onPressed: () async {
+                  final email = _email.text;
+                  final password = _password.text;
+                  try {
+                    final userCredential = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                      email: email,
+                      password: password,
+                    );
+                    print(userCredential);
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+                child: const Text('Register'),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                // return RegisterView()
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('/login', (route) => false);
+              },
+              child: const Text('Already Registered? Login from here!'),
+            )
+          ],
         ),
-        body: FutureBuilder(
-          future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform,
-          ),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.done:
-                return SafeArea(
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: _email,
-                        autocorrect: false,
-                        enableSuggestions: true,
-                        textAlign: TextAlign.left,
-                        decoration: const InputDecoration(
-                          hintText: "Enter your email here",
-                          contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        ),
-                      ),
-                      TextField(
-                        controller: _password,
-                        textAlign: TextAlign.left,
-                        obscureText: true,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        decoration: const InputDecoration(
-                          hintText: "Enter your password here",
-                          contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          final email = _email.text;
-                          final password = _password.text;
-                          try {
-                            final userCredential = await FirebaseAuth.instance
-                                .createUserWithEmailAndPassword(
-                              email: email,
-                              password: password,
-                            );
-                            print(userCredential);
-                          } catch (e) {
-                            print(e);
-                          }
-                        },
-                        child: const Text('Register'),
-                      ),
-                    ],
-                  ),
-                );
-              default:
-                return const SafeArea(
-                  child: Text('Loading.....'),
-                );
-            }
-          },
-        ));
+      ),
+    );
   }
 }
