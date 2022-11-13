@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1075482216613",
+    "project_id": "panchshala-hotel",
+    "storage_bucket": "panchshala-hotel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075482216613:android:7097c3f90e31b3faaea54c",
+        "android_client_info": {
+          "package_name": "com.panchshala.panchshala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075482216613-vppov9brtreu3724rift2vcsijq4jaee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU_HnVTwY1jWN1Hfuwo4ydCihI0RfxM_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075482216613-vppov9brtreu3724rift2vcsijq4jaee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
